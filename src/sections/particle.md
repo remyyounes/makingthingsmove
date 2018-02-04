@@ -9,6 +9,7 @@ class MovingParticle extends React.Component {
       particle: new Particle({
         position: { x: 100, y: 100 },
         velocity: { x: 1, y: 1 },
+        size: { width: 30, height: 30 },
       }),
       dimensions: { width: 400, height: 200}
     }
@@ -16,10 +17,10 @@ class MovingParticle extends React.Component {
 
   checkBounds(bounds, particle) {
     const collision = { x: 0, y: 0 }
-    const xMin = particle.position.x - particle.size.width / 2 
-    const xMax = particle.position.x + particle.size.width / 2 
-    const yMin = particle.position.y - particle.size.height / 2 
-    const yMax = particle.position.y + particle.size.height / 2 
+    const xMin = particle.position.x - particle.size.width / 2
+    const xMax = particle.position.x + particle.size.width / 2
+    const yMin = particle.position.y - particle.size.height / 2
+    const yMax = particle.position.y + particle.size.height / 2
 
     if (xMin <= 0 || xMax >= bounds.width) {
       collision.x = 1
