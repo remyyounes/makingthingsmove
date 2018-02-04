@@ -1,18 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { pageLoader, Stylegator, useCustomPartials } from 'stylegator'
+import { pageLoader, Stylegator } from 'stylegator'
+import Canvas from './components/Canvas'
 
-// TODO: fix defaultProps on stylegator
-const partials = useCustomPartials({})
+const components = { Canvas }
 const sections = [
   {
     title: 'Hello World',
     loader: pageLoader(() => import('./sections/hello.md')),
   },
+  {
+    title: 'Fill',
+    loader: pageLoader(() => import('./sections/fill.md')),
+  },
+  {
+    title: 'Stroke',
+    loader: pageLoader(() => import('./sections/stroke.md')),
+  },
 ]
 
 ReactDOM.render(
-  <Stylegator {...{ sections, partials }} />,
+  <Stylegator {...{ sections, components }} />,
   document.getElementById('app')
 )
 
