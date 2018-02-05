@@ -1,0 +1,9 @@
+```code
+<div>
+  <Tree
+    generations={8}
+    baseScale={0.77}
+    baseLength={150}
+  />
+</div>
+```

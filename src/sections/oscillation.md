@@ -21,17 +21,17 @@
 
   // update loop / physics
   const update = () => {
-    particleA.position.x = center.x + Math.cos(time) * radius
-    particleA.position.y = center.y + Math.sin(time) * radius
+     particleA.position.x = center.x + Math.cos(time) * radius
+    particleA.position.y = center.y + Math.sin(time) * radius 
 
     particleB.position.x = center.x + Math.cos(time) * radius
     particleB.position.y = center.y
 
-    particleC.position.x = center.x
+     particleC.position.x = center.x
     particleC.position.y = center.y + Math.sin(time) * radius
-
+    /*
     particleD.position.x = center.x + Math.sin(time) * radius
-    particleD.position.y = center.y + Math.sin(time) * radius
+    particleD.position.y = center.y + Math.sin(time) * radius */
     time += 0.1
   }
 
