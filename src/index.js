@@ -20,14 +20,22 @@ const components = {
 }
 
 const sections = [
-  {
-    title: 'Hello World',
-    loader: pageLoader(() => import('./sections/hello.md')),
-  },
 
+  {
+    title: 'Introduction',
+    loader: pageLoader(() => import('./sections/introduction.md')),
+  },
   {
     title: 'Canvas Basics',
     sections: [
+      {
+        title: 'Hello Canvas',
+        loader: pageLoader(() => import('./sections/hello.md')),
+      },
+      {
+        title: 'Primitives',
+        loader: pageLoader(() => import('./sections/primitives.md')),
+      },
       {
         title: 'Fill',
         loader: pageLoader(() => import('./sections/fill.md')),
@@ -35,6 +43,10 @@ const sections = [
       {
         title: 'Stroke',
         loader: pageLoader(() => import('./sections/stroke.md')),
+      },
+      {
+        title: 'Motion',
+        loader: pageLoader(() => import('./sections/motion.md')),
       },
     ],
   },

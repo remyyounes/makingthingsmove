@@ -1,48 +1,64 @@
+# Getting started with the canvas
+
+The Canvas
+- is a DOM element
+- can handle 2D or 3D
+- can draw on its context
+
+## Canvas Context
+
+In order to start drawing on a canvas we need to get its context.
+The context contains information such as the current alpha, rotation, and scale settings.
+It can be used to transform shapes' scale and rotation in relation to their parent (see Fractals).
+
+```js
+  const ctx =  canvas.getContext('2d')
+  // ... draw ...
+  ctx.save(); // enter a new context
+  // modify context scale
+  // ... draw more ...
+  ctx.restore(); // restore the previous context
+```
+
+# Drawing
+```js
+// ===== DRAW =====
+ctx.beginPath()
+ctx.moveTo(100,100)
+ctx.lineTo(150,150)
+ctx.stroke()
+// ================
+```
+
+
+## Line Example
+
 ```code
 class CanvasExample extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      dimensions: { width: 500, height: 200 },
-      size: { width: 100, height: 100 },
-      position: { x: 10, y: 5 },
-      velocity: { x: 4, y: -1 }
-    }
-  }
-
-  tick() {
-    const { dimensions, position, size, velocity } = this.state
-    const state = { velocity, position }
-
-    if (position.x > dimensions.width || position.x < 0) {
-      state.velocity = { ...velocity, x: -velocity.x }
-    } else if (position.y > dimensions.height || position.y < 0) {
-      state.velocity = { ...velocity, y: -velocity.y }
-    }
-
-    state.position = {
-      x: position.x + state.velocity.x,
-      y: position.y + state.velocity.y,
-    }
-    this.setState(state)
-  }
-
   render() {
-    const { dimensions, position, size } = this.state;
+    const dimensions = { width: 500, height: 200 }
+    const size = { width: 100, height: 100 }
+    const position = { x: 200, y: 100 }
+
     return (
       <Canvas
         dimensions={dimensions}
-        fps={60}
         draw={(canvas => {
+
+          // extract the contect from canvas
           const ctx = canvas.getContext('2d')
+
+          // clear background before drawing
           ctx.clearRect(0,0, dimensions.width, dimensions.height)
 
+          // ===== DRAW =====
           ctx.beginPath()
-          ctx.ellipse(position.x, position.y, size.width / 2, size.height / 2, 0, 0, 2 * Math.PI)
+          ctx.moveTo(100,100)
+          ctx.lineTo(150,150)
           ctx.stroke()
+          // ================
 
-          this.tick();
         })}
       />
     )
