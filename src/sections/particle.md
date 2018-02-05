@@ -60,7 +60,15 @@ class MovingParticle extends React.Component {
           ctx.clearRect(0,0, dimensions.width, dimensions.height)
 
           ctx.beginPath()
-          Art.ellipse(ctx, particle)
+          ctx.ellipse(
+            particle.position.x,
+            particle.position.y,
+            particle.size.width / 2,
+            particle.size.height / 2,
+            0,
+            0,
+            2 * Math.PI
+          )
           ctx.stroke()
 
           this.tick();

@@ -5,12 +5,14 @@ import Canvas from './components/Canvas'
 import Particle from './components/Particle'
 import Art from './components/Art'
 import Liquid from './components/Liquid'
-import P5Wrapper from 'react-p5-wrapper';
+import Oscilation from './components/Oscilation'
+import P5Wrapper from 'react-p5-wrapper'
 
 const components = {
   Art,
   Canvas,
   Liquid,
+  Oscilation,
   Particle,
   P5Wrapper,
 }
@@ -22,7 +24,7 @@ const sections = [
   },
 
   {
-    title: 'Basics',
+    title: 'Canvas Basics',
     sections: [
       {
         title: 'Fill',
@@ -32,6 +34,12 @@ const sections = [
         title: 'Stroke',
         loader: pageLoader(() => import('./sections/stroke.md')),
       },
+    ],
+  },
+  {
+    title: 'Animation',
+    sections: [
+
       {
         title: 'Particle',
         loader: pageLoader(() => import('./sections/particle.md')),
@@ -64,7 +72,15 @@ const sections = [
         title: 'Spring',
         loader: pageLoader(() => import('./sections/spring.md')),
       },
-    ]
+      {
+        title: 'Oscillation',
+        loader: pageLoader(() => import('./sections/oscillation.md')),
+      },
+      {
+        title: 'Oscillation2',
+        loader: pageLoader(() => import('./sections/oscillation2.md')),
+      },
+    ],
   },
 ]
 

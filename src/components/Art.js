@@ -4,9 +4,6 @@ const ellipse = (ctx, particle) => {
     particle.position.y,
     particle.size.width / 2,
     particle.size.height / 2,
-    0,
-    0,
-    2 * Math.PI
   )
 }
 const rect = (ctx, particle) => {

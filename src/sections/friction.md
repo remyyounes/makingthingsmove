@@ -17,31 +17,16 @@
       friction: 0.97,
       size,
     })
-
-  }
-
-  // update loop / physics
-  const update = () => {
-    particle.update()
   }
 
   // draw loop / rendering
   p.draw = function () {
-
-    // render background
-    p.background(p.color('white'))
-
     // render particle
-    const { width: w, height: h } = particle.size
     p.push()
-    p.ellipse(
-      particle.position.x,
-      particle.position.y,
-      particle.size.width,
-      particle.size.height
-    )
+    Art.ellipse(p, particle)
     p.pop()
-    update()
+
+    particle.update()
   }
 
 }} />
