@@ -13,6 +13,7 @@
     "webpack": "^3.10.0"
   },
   "dependencies": {
-    "prop-types-docs": "^0.1.1"
+    "prop-types-docs": "^0.1.1",
+    "react-p5-wrapper": "0.0.4"
   }
 }

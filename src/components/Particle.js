@@ -1,9 +1,25 @@
-class Particle  {
+import p5 from 'p5'
+
+class Particle {
   constructor(props) {
-    this.size = props.size ||  { width: 10, height: 10 }
-    this.position = props.position ||  { x: 0, y: 0 }
-    this.velocity = props.velocity ||  { x: 0, y: 0 }
-    this.weight = props.weight ||  1
+    this.acceleration = props.acceleration || new p5.Vector(0, 0)
+    this.mass = props.mass || 1
+    this.position = props.position || new p5.Vector(0, 0)
+    this.size = props.size || { width: 10, height: 10 }
+    this.velocity = props.velocity || new p5.Vector(0, 0)
+    this.friction = props.friction || 1
+  }
+  applyForce(force) {
+    var f = p5.Vector.div(force, this.mass)
+    this.acceleration.add(f)
+  }
+
+  update() {
+    this.velocity.add(this.acceleration)
+    debugger;
+    this.velocity.mult(this.friction)
+    this.position.add(this.velocity)
+    this.acceleration.mult(0)
   }
 }
 
