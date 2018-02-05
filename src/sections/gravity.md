@@ -15,7 +15,6 @@
       position: p.createVector(dimensions.width/2, 0),
       size,
     })
-
   }
 
   // update loop / physics
@@ -41,14 +40,8 @@
     p.background(p.color('white'))
 
     // render particle
-    const { width: w, height: h } = particle.size
     p.push()
-    p.ellipse(
-      particle.position.x,
-      particle.position.y,
-      particle.size.width,
-      particle.size.height
-    )
+    Art.ellipse(p, particle)
     p.pop()
     update()
   }

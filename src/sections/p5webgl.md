@@ -6,12 +6,6 @@
     p.createCanvas(600, 400, p.WEBGL);
   };
 
-  p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
-    if (props.rotation){
-      rotation = props.rotation * Math.PI / 180;
-    }
-  };
-
   p.draw = function () {
     rotation += 0.01
     p.background(100);

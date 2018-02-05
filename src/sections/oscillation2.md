@@ -13,7 +13,6 @@
 
   p.setup = function () {
     // setup canvas
-    const { width, height } = dimensions
     p.createCanvas(dimensions.width, dimensions.height, p.P2D)
 
     // setup particle
@@ -86,10 +85,19 @@
 ```code
 <Oscilation update={
   (time, particle) => {
-    const radius = 100
-    const r = radius
+    const r = 100
     particle.position.x = Math.cos(time) * r
     particle.position.y = Math.sin(time/4) * r
+  }
+}/>
+```
+```code
+<Oscilation update={
+  (time, particle) => {
+    const radius = 100
+    const r = radius *  Math.cos(time / 20)
+    particle.position.x = Math.cos(time) * r
+    particle.position.y = Math.sin(time) * r
   }
 }/>
 ```

@@ -12,7 +12,6 @@
 
     // setup particle
     particle = new Particle({
-      position: p.createVector(0, 0),
       velocity: p.createVector(8, 2),
       friction: 0.97,
       size,

@@ -17,7 +17,6 @@ class Oscilation extends React.Component {
 
         p.setup = () => {
           // setup canvas
-          const { width, height } = dimensions
           p.createCanvas(dimensions.width, dimensions.height, p.P2D)
 
           // setup particle
