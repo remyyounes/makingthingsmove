@@ -1,0 +1,11 @@
+webpackJsonp([6],{
+
+/***/ "./src/sections/p5webgl.md":
+/***/ (function(module, exports) {
+
+module.exports = "# P5 in OpenGL Mode\n\n## Setup\nIn order to enable 3D rendering, we need to pass `p.WEBGL` to `p.createCanvas` from `p.setup`\n```js\np.setup = function () {\n  p.createCanvas(600, 400, p.WEBGL);\n};\n```\n\n\n```code\n<P5Wrapper sketch={(p) => {\n  let rotation = 10;\n\n  p.setup = function () {\n    p.createCanvas(600, 400, p.WEBGL);\n  };\n\n  p.draw = function () {\n    rotation += 0.01\n    p.background(100);\n    p.noStroke();\n    p.push();\n    p.rotateY(rotation);\n    p.rotateX(rotation/2);\n    p.box(100);\n    p.pop();\n  };\n}} />\n\n```\n"
+
+/***/ })
+
+});
+//# sourceMappingURL=6.js.map
