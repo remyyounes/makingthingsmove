@@ -1,7 +1,7 @@
 # Introduction
 
-## Thanks
-Thanks ___ for hosting this event
+## Thank you SB JS Meetup
+Thank Workzones for hosting this event and you for coming.
 
 
 ## About me
@@ -32,23 +32,5 @@ Twitter: @remyyounes
 - Valid Math
 - Serious Physics
 
-
-
-We will go over the basics of the Canvas API
-After learning about drawing primitives, we'll have a look at the P5 library.
-
-Once we are comfortable drawing shapes on a canvas, we'll discuss forces and motion.
-
-Managing complex interactions can become messy.
-
-Force -> acceleration -> velocity -> position
-Drag
-Friction
-Gravity
-Spring
-
-combining forces
-
-composing mapping functions to attribute values
-
-fractals
+## Why
+- Keith Peters @ https://bit101.github.io/lab/

@@ -1,3 +1,11 @@
+# Applying Gravity
+
+Applying gravity to an object is as simple as applying a constant downward force.
+```js
+const gravity = p.createVector(0, particle.mass * 0.2)
+particle.applyForce(gravity)
+```
+
 ```code
 <P5Wrapper sketch={(p) => {
   // parameters

@@ -1,3 +1,10 @@
+# Oscilation
+
+Playing and combining oscillating values is by far the most fascinating part of playing with the canvas.
+
+![Trigonometry](https://www.mathsisfun.com/algebra/images/sine-cosine-graph.gif)
+
+
 ```code
 <P5Wrapper sketch={(p) => {
   // parameters
@@ -22,16 +29,16 @@
   // update loop / physics
   const update = () => {
      particleA.position.x = center.x + Math.cos(time) * radius
-    particleA.position.y = center.y + Math.sin(time) * radius 
+    particleA.position.y = center.y + Math.sin(time) * radius
 
     particleB.position.x = center.x + Math.cos(time) * radius
     particleB.position.y = center.y
 
      particleC.position.x = center.x
     particleC.position.y = center.y + Math.sin(time) * radius
-    /*
+
     particleD.position.x = center.x + Math.sin(time) * radius
-    particleD.position.y = center.y + Math.sin(time) * radius */
+    particleD.position.y = center.y + Math.sin(time) * radius
     time += 0.1
   }
 
@@ -39,7 +46,7 @@
   p.draw = function () {
 
     // render background
-    p.background(p.color('white'))
+    /* p.background(p.color('white')) */
 
     // render particles
     Art.ellipse(p, particleA)

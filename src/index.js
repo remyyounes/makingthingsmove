@@ -61,6 +61,10 @@ const sections = [
         loader: pageLoader(() => import('./sections/particle.md')),
       },
       {
+        title: 'Gravity',
+        loader: pageLoader(() => import('./sections/gravity.md')),
+      },
+      {
         title: 'P5',
         loader: pageLoader(() => import('./sections/p5.md')),
       },
@@ -84,10 +88,7 @@ const sections = [
         title: 'Friction',
         loader: pageLoader(() => import('./sections/friction.md')),
       },
-      {
-        title: 'Gravity',
-        loader: pageLoader(() => import('./sections/gravity.md')),
-      },
+
       {
         title: 'Liquid',
         loader: pageLoader(() => import('./sections/liquid.md')),
@@ -109,6 +110,10 @@ const sections = [
         loader: pageLoader(() => import('./sections/tree.md')),
       },
     ],
+  },
+  {
+    title: 'Notes',
+    loader: pageLoader(() => import('./sections/notes.md')),
   },
 ]
 

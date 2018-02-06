@@ -6,7 +6,6 @@ var Liquid = function(x, y, w, h, c) {
   this.c = c
 }
 
-// Is the Mover in the Liquid?
 Liquid.prototype.contains = function(m) {
   var l = m.position
   return (
@@ -24,9 +23,6 @@ Liquid.prototype.calculateDrag = function(m) {
   // Direction is inverse of velocity
   var dragForce = m.velocity.copy()
   dragForce.mult(-1)
-
-  // Scale according to magnitude
-  // dragForce.setMag(dragMagnitude);
   dragForce.normalize()
   dragForce.mult(dragMagnitude)
 
