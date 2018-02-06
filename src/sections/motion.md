@@ -1,3 +1,55 @@
+# Moving in space
+
+## Ticking / State
+Now that we know how to draw basic shapes we can start animating them.
+First we'll need to find a place outside of the render loop for all this state management to take place.
+
+We can create a tick() function to host our world's interactions
+```js
+tick() {
+  // update velocity
+  // update position
+}
+```
+We'll then call tick after every render
+```js
+draw = function() {
+  // ...
+  ctx.beginPath()
+  ctx.rect(0, 0, 10, 10)
+  ctx.stroke()
+  // ...
+  tick()
+}
+```
+
+## Time delta
+For smoother and more linear rendering we should be passing `dt` to our tick function.
+(cheat by lag)
+
+## Velocity
+Each of our dynamic objects will have a velocity vector that we'll use to compute its next position
+
+We just add the velocity vector to the position vector to get our new position
+```js
+position = {
+  x: position.x + velocity.x,
+  y: position.y + velocity.y,
+}
+```
+
+## Wall bouncing
+To simulate bouncing we'll just flip the appropriate velocity axis when we hit a wall
+
+```js
+if (position.x > dimensions.width || position.x < 0) {
+  velocity = { ...velocity, x: -velocity.x }
+} else if (position.y > dimensions.height || position.y < 0) {
+  velocity = { ...velocity, y: -velocity.y }
+}
+```
+
+
 ```code
 class CanvasExample extends React.Component {
 

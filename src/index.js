@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import P5Wrapper from 'react-p5-wrapper'
+import { Vector } from 'p5'
 import { pageLoader, Stylegator } from 'stylegator'
 import Canvas from './components/Canvas'
 import Particle from './components/Particle'
@@ -17,6 +18,7 @@ const components = {
   P5Wrapper,
   Particle,
   Tree,
+  Vector,
 }
 
 const sections = [

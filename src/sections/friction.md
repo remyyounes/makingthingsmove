@@ -1,3 +1,22 @@
+# Friction
+
+## Implementation
+
+Let's have another look a the Particle class.
+
+```js
+update() {
+  this.velocity.add(this.acceleration)
+  this.velocity.mult(this.friction) // decrease velocity
+  this.position.add(this.velocity)
+  this.acceleration.mult(0)
+}
+```
+
+In the update method we can see that we are just multiplying the velocity by the friction property
+
+All we have to do is to pass a friction value to our particle.
+
 ```code
 <P5Wrapper sketch={(p) => {
   // parameters

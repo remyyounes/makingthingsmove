@@ -1,3 +1,33 @@
+# Rotating objects
+
+## Angle modes
+```js
+p.angleMode(p.DEGREES);
+p.angleMode(p.RADIANS);
+```
+## Radians to Degrees
+- `1 RAD = 180 / PI`
+- `1 DEG = PI / 180`
+
+## Rotating
+```js
+p.draw = function () {
+  // ...
+  p.angleMode(p.RADIANS);
+  p.rotate(angle);
+  p.translate(center.x, center.y);
+  p.rect(width/2, width/2, width, height);
+  // ...
+}
+```
+
+## Finding the angle
+you can use `p.atan2(dy, dx)` to find the angle between 2 points
+```js
+  const delta = pointB.copy().sub(pointA) // vector from A to B
+  const angle = p.atan2(delta.y, delta.x); // angle of vector from A to B
+```
+
 ```code
 <P5Wrapper sketch={(p) => {
   let rotation = 10;
