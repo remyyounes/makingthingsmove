@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import P5Wrapper from 'react-p5-wrapper'
-import { Vector } from 'p5'
+import * as P from 'p5/lib/addons/p5.dom.js'
+import p5 from 'p5'
 import * as R from 'ramda'
 import { pageLoader, Stylegator } from 'stylegator'
 import Canvas from './components/Canvas'
@@ -20,7 +21,7 @@ const components = {
   Particle,
   R,
   Tree,
-  Vector,
+  Vector: p5.Vector,
 }
 
 const sections = [
@@ -125,6 +126,10 @@ const sections = [
       {
         title: 'Wrapping',
         loader: pageLoader(() => import('./sections/flock-boid-wrap.md')),
+      },
+      {
+        title: 'Separation',
+        loader: pageLoader(() => import('./sections/flock-separation.md')),
       },
     ],
   },

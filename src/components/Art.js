@@ -15,23 +15,35 @@ const rect = (ctx, particle) => {
   )
 }
 
-const boid = ctx => particle => {
+const boid = ctx => boid => {
   ctx.push()
-  ctx.translate(particle.position.x, particle.position.y)
-  ctx.rotate(particle.velocity.heading() + Math.PI / 2)
+  ctx.translate(boid.position.x, boid.position.y)
+  ctx.rotate(boid.velocity.heading() + Math.PI / 2)
   ctx.triangle(
     0,
-    -particle.size.height / 2,
-    -particle.size.width / 2,
-    particle.size.height / 2,
-    particle.size.width / 2,
-    particle.size.height / 2,
+    -boid.size.height / 2,
+    -boid.size.width / 2,
+    boid.size.height / 2,
+    boid.size.width / 2,
+    boid.size.height / 2,
   );
+  ctx.pop()
+}
+
+const debugBoid = (ctx) => boid => {
+  ctx.push()
+  ctx.translate(boid.position.x, boid.position.y)
+  ctx.canvas.getContext('2d').globalAlpha = 0.05
+  ctx.fill("rgba(255, 0, 0, 0.6)")
+  ctx.ellipse(0, 0, boid.separation.radius * 2)
+  ctx.ellipse(0, 0, boid.alignment.radius * 2)
+  ctx.ellipse(0, 0, boid.cohesion.radius * 2)
   ctx.pop()
 }
 
 export default {
   boid,
+  debugBoid,
   ellipse,
   rect,
 }
