@@ -135,6 +135,10 @@ const sections = [
         title: 'Alignment',
         loader: pageLoader(() => import('./sections/flock-alignment.md')),
       },
+      {
+        title: 'Cohesion',
+        loader: pageLoader(() => import('./sections/flock-cohesion.md')),
+      },
     ],
   },
   {
