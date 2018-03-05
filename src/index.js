@@ -131,6 +131,10 @@ const sections = [
         title: 'Separation',
         loader: pageLoader(() => import('./sections/flock-separation.md')),
       },
+      {
+        title: 'Alignment',
+        loader: pageLoader(() => import('./sections/flock-alignment.md')),
+      },
     ],
   },
   {
