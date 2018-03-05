@@ -12,7 +12,7 @@ Wrap boids across edges
     const center = dimensions.copy().div(2)
     const settings = new Settings({
       p,
-      count: 5,
+      count: 25,
       world: {
         dimensions,
         center,
@@ -21,8 +21,8 @@ Wrap boids across edges
       rules: {
         debug: { active: true },
         separation: { coefficient: 0.002, radius: 40, active: true },
-        alignment: { coefficient: 0.002, radius: 60, active: true },
-        cohesion: { coefficient: 0.002, radius: 80, active: true },
+        alignment: { coefficient: 0.02, radius: 60, active: true },
+        cohesion: { coefficient: 0.02, radius: 80, active: true },
       }
     })
     const simulation = {

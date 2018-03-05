@@ -17,20 +17,14 @@ const getNeighbours = (flock, radius) => focal =>
 
 const forces = {
   debug: group => focal => new p5.Vector(0, 0),
-  separation: group => focal => average(group.map(getDelta(focal))).mult(-1),
+  separation: group => focal => average(group.map(getDelta(focal))),
   alignment: group => focal => average(group.map(getVelocity)),
-  cohesion: group => focal => {
-    const position = average(group.map(getPosition))
-    const delta = getDelta({ position })(focal)
-    return delta.normalize(1)
-  },
+  cohesion: group => focal =>
+    getDelta({ position: average(group.map(getPosition)) })(focal).normalize(1),
 }
 
-const computeForce = (key, group) => boid => {
-  debugger;
-  return forces[key](group)(boid)
-    .mult(boid.rules[key].coefficient)
-}
+const computeForce = (key, group) => boid =>
+  forces[key](group)(boid).mult(boid.rules[key].coefficient)
 
 const updateRule = (flock, boid) => rule => {
   const force = new p5.Vector(0, 0)
