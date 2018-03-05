@@ -8,6 +8,7 @@ class Particle {
     this.size = props.size || { width: 10, height: 10 }
     this.velocity = props.velocity || new p5.Vector(0, 0)
     this.maxVelocity = props.maxVelocity || 1
+    this.maxForce = props.maxForce || 1
     this.friction = props.friction || 1
   }
 

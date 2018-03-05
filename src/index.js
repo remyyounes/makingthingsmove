@@ -1,12 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import P5Wrapper from 'react-p5-wrapper'
-import * as P from 'p5/lib/addons/p5.dom.js'
 import p5 from 'p5'
+import * as P from 'p5/lib/addons/p5.dom.js'
 import * as R from 'ramda'
 import { pageLoader, Stylegator } from 'stylegator'
 import Canvas from './components/Canvas'
 import Particle from './components/Particle'
+import Settings from './components/Settings'
+import Engine from './components/Engine'
+import Boid from './components/Boid'
+import World from './components/World'
 import Art from './components/Art'
 import Liquid from './components/Liquid'
 import Oscilation from './components/Oscilation'
@@ -19,9 +23,13 @@ const components = {
   Oscilation,
   P5Wrapper,
   Particle,
+  Settings,
+  Boid,
+  Engine,
   R,
   Tree,
   Vector: p5.Vector,
+  World,
 }
 
 const sections = [
@@ -138,6 +146,10 @@ const sections = [
       {
         title: 'Cohesion',
         loader: pageLoader(() => import('./sections/flock-cohesion.md')),
+      },
+      {
+        title: 'Summary',
+        loader: pageLoader(() => import('./sections/flock-summary.md')),
       },
     ],
   },
