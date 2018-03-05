@@ -1,4 +1,8 @@
 import p5 from 'p5'
+
+// =======
+//  UTILS
+// =======
 const debug = x => {
   debugger
   return x
@@ -26,6 +30,9 @@ const steer = target => focal => {
   return delta.sub(focal.velocity).limit(focal.maxForce)
 }
 
+// ========
+//  FORCES
+// ========
 const forces = {
   debug: group => focal => new p5.Vector(0, 0),
   separation: group => focal =>
@@ -53,6 +60,9 @@ const updateRule = (flock, boid) => rule => {
   return force
 }
 
+// =========
+//  UPDATES
+// =========
 const updateBoid = flock => focal => {
   const all = Object.keys(forces).map(updateRule(flock, focal))
   const sum = all.reduce((acc, next) => acc.add(next), new p5.Vector(0, 0))

@@ -3,7 +3,12 @@ import p5 from 'p5'
 const createRuleSlider = (p, key, config) => ({
   active: p.createCheckbox(key, config.active),
   radius: p.createSlider(0, config.radius * 2, config.radius),
-  coefficient: p.createSlider(0, config.coefficient * 2, config.coefficient, 0.0001),
+  coefficient: p.createSlider(
+    0,
+    config.coefficient * 2,
+    config.coefficient,
+    0.0001 // step size
+  ),
 })
 
 const readSetting = ({ radius, coefficient, active }) => ({
@@ -18,7 +23,12 @@ class Settings {
     this.count = props.count
     this.world = props.world
     this.p = props.p
+    this.position = new p5.Vector(20, 0)
     this.initSliders()
+  }
+
+  nextPosition() {
+    return this.position.add(0, 20).copy()
   }
 
   update() {
@@ -36,16 +46,25 @@ class Settings {
       debug: this.p.createCheckbox('debug', this.rules.debug.active),
     }
 
-    this.sliders.separation.active.position(20, 20)
-    this.sliders.separation.radius.position(20, 40)
-    this.sliders.separation.coefficient.position(20, 60)
-    this.sliders.alignment.active.position(20, 80)
-    this.sliders.alignment.radius.position(20, 100)
-    this.sliders.alignment.coefficient.position(20, 120)
-    this.sliders.cohesion.active.position(20, 140)
-    this.sliders.cohesion.radius.position(20, 160)
-    this.sliders.cohesion.coefficient.position(20, 180)
-    this.sliders.debug.position(20, 200)
+    this.render([
+      this.sliders.separation.active,
+      this.sliders.separation.radius,
+      this.sliders.separation.coefficient,
+      this.sliders.alignment.active,
+      this.sliders.alignment.radius,
+      this.sliders.alignment.coefficient,
+      this.sliders.cohesion.active,
+      this.sliders.cohesion.radius,
+      this.sliders.cohesion.coefficient,
+      this.sliders.debug,
+    ])
+  }
+
+  render(elements) {
+    elements.forEach(element => {
+      const { x, y } = this.nextPosition()
+      element.position(x, y)
+    })
   }
 }
 

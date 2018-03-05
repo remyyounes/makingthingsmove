@@ -35,9 +35,9 @@ const debugBoid = (ctx) => boid => {
   ctx.translate(boid.position.x, boid.position.y)
   ctx.canvas.getContext('2d').globalAlpha = 0.05
   ctx.fill("rgba(255, 0, 0, 0.6)")
-  ctx.ellipse(0, 0, boid.separation.radius * 2)
-  ctx.ellipse(0, 0, boid.alignment.radius * 2)
-  ctx.ellipse(0, 0, boid.cohesion.radius * 2)
+  ctx.ellipse(0, 0, boid.rules.separation.radius * 2)
+  ctx.ellipse(0, 0, boid.rules.alignment.radius * 2)
+  ctx.ellipse(0, 0, boid.rules.cohesion.radius * 2)
   ctx.pop()
 }
 

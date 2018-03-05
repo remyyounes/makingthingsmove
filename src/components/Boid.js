@@ -13,16 +13,6 @@ class Boid extends Particle {
     this.p = props.p
     this.velocity = props.velocity || randomVector(this.p, this.maxVelocity)
   }
-
-  get separation() {
-    return this.rules.separation
-  }
-  get alignment() {
-    return this.rules.alignment
-  }
-  get cohesion() {
-    return this.rules.cohesion
-  }
 }
 
 export default Boid

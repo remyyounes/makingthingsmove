@@ -11,7 +11,6 @@
   p.setup = function() {
     // setup canvas
     p.createCanvas(dimensions.width, dimensions.height, p.P2D)
-    debugger;
     // setup particles
     for (let i = 0; i < count; i++) {
       const particle = new Particle({
