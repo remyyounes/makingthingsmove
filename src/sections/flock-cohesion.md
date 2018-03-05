@@ -9,16 +9,17 @@ Wrap boids across edges
   sketch={p => {
     // parameters
     const FORCE_PRECISION = 10000
-    const dimensions = p.createVector(800, 600)
+    const dimensions = p.createVector(600, 400)
     const center = dimensions.copy().div(2)
     let sliders, flock = []
     const debug = x => { console.log(x); return x }
     const flockCfg = {
-      count: 20,
+      count: 50,
       maxVelocity: 1,
-      separation: { force: 0.001, radius: 20, active: false },
-      alignment: { force: 0.01, radius: 40, active: false },
-      cohesion: { force: 0.05, radius: 80, active: true },
+      debug: false,
+      separation: { force: 0.002, radius: 20, active: true },
+      alignment: { force: 0.02, radius: 40, active: true },
+      cohesion: { force: 0.01, radius: 80, active: true },
       size: { width: 10, height: 20 },
     }
 
@@ -59,6 +60,7 @@ Wrap boids across edges
       settings.separation = getSetting('separation', sliders)
       settings.alignment = getSetting('alignment', sliders)
       settings.cohesion = getSetting('cohesion', sliders)
+      settings.debug = sliders.debug.checked()
     }
 
     const renderBoid = Art.boid(p)
@@ -76,6 +78,7 @@ Wrap boids across edges
         separation: createRuleSlider('separation', config.separation),
         alignment: createRuleSlider('alignment', config.alignment),
         cohesion: createRuleSlider('cohesion', config.cohesion),
+        debug: p.createCheckbox('debug', config.debug),
       }
 
       sliders.separation.active.position(20, 20)
@@ -87,6 +90,7 @@ Wrap boids across edges
       sliders.cohesion.active.position(20, 140)
       sliders.cohesion.radius.position(20, 160)
       sliders.cohesion.force.position(20, 180)
+      sliders.debug.position(20, 200)
     }
 
     p.setup = function() {
@@ -95,11 +99,12 @@ Wrap boids across edges
 
 
       // init boids
-      const initBoid = () =>  new Boid({
-        position: center.copy(),
-      })
+      const initBoid =
 
-      flock = R.times( initBoid, flockCfg.count )
+      flock = R.times(
+        () =>  new Boid({ position: center.copy() }),
+        flockCfg.count
+      )
 
       // settings
       // create sliders
@@ -205,8 +210,10 @@ Wrap boids across edges
       // update world state
       updateSettings(flockCfg, sliders)
       simulate()
-      flock.map(Art.debugBoid(p))
-      flock.map(Art.debugMotion(p))
+      if (flockCfg.debug) {
+        flock.map(Art.debugBoid(p))
+        flock.map(Art.debugMotion(p))
+      }
       flock.map(Art.boid(p))
       update()
     }
