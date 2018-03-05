@@ -41,9 +41,21 @@ const debugBoid = (ctx) => boid => {
   ctx.pop()
 }
 
+const debugMotion = (ctx) => particle => {
+  ctx.push()
+  ctx.translate(particle.position.x, particle.position.y)
+  ctx.canvas.getContext('2d').globalAlpha = 1
+  ctx.stroke("red")
+  ctx.line(0, 0, particle.velocity.x * 20, particle.velocity.y * 20)
+  ctx.stroke("blue")
+  ctx.line(0, 0, particle.acceleration.x * 500, particle.acceleration.y * 500)
+  ctx.pop()
+}
+
 export default {
   boid,
   debugBoid,
+  debugMotion,
   ellipse,
   rect,
 }

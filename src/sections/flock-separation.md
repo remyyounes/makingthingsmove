@@ -62,6 +62,7 @@ Wrap boids across edges
 
     const renderBoid = Art.boid(p)
     const debugBoid = Art.debugBoid(p)
+    const debugMotion = Art.debugMotion(p)
 
     const createRuleSlider = (key, config) => ({
       radius: debug(p.createSlider(0, config.radius * 2, config.radius)),
@@ -139,9 +140,11 @@ Wrap boids across edges
     }
 
     // update loop / physics
-    const update = () => {
+    const simulate = () => {
       flock.forEach( separate(flock) )
       flock.forEach( wrap(dimensions) )
+    }
+    const update = () => {
       flock.forEach( boid => boid.update() )
     }
 
@@ -150,10 +153,12 @@ Wrap boids across edges
       // render background
       p.background(p.color('white'))
       // render flock
-      flock.map(renderBoid)
-      flock.map(debugBoid)
       // update world state
       updateSettings(flockCfg, sliders)
+      simulate()
+      flock.map(Art.debugBoid(p))
+      flock.map(Art.debugMotion(p))
+      flock.map(Art.boid(p))
       update()
     }
   }}
