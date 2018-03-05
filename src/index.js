@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import P5Wrapper from 'react-p5-wrapper'
 import { Vector } from 'p5'
+import * as R from 'ramda'
 import { pageLoader, Stylegator } from 'stylegator'
 import Canvas from './components/Canvas'
 import Particle from './components/Particle'
@@ -17,12 +18,12 @@ const components = {
   Oscilation,
   P5Wrapper,
   Particle,
+  R,
   Tree,
   Vector,
 }
 
 const sections = [
-
   {
     title: 'Introduction',
     loader: pageLoader(() => import('./sections/introduction.md')),
@@ -55,7 +56,6 @@ const sections = [
   {
     title: 'Animation',
     sections: [
-
       {
         title: 'Particle',
         loader: pageLoader(() => import('./sections/particle.md')),
@@ -108,6 +108,23 @@ const sections = [
       {
         title: 'Fractal Tree',
         loader: pageLoader(() => import('./sections/tree.md')),
+      },
+    ],
+  },
+  {
+    title: 'Flock',
+    sections: [
+      {
+        title: 'Intro',
+        loader: pageLoader(() => import('./sections/flock.md')),
+      },
+      {
+        title: 'Boid',
+        loader: pageLoader(() => import('./sections/flock-boid.md')),
+      },
+      {
+        title: 'Wrapping',
+        loader: pageLoader(() => import('./sections/flock-boid-wrap.md')),
       },
     ],
   },
