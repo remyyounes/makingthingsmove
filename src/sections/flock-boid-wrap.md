@@ -52,8 +52,6 @@ Wrap boids across edges
     }
 
     const wrap = dimensions => particle => {
-      /* if (particle.position) */
-      debugger;
       particle.position.x = particle.position.x % 400
       particle.position.y = particle.position.y % 400
 

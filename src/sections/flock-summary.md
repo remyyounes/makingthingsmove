@@ -20,9 +20,9 @@ Wrap boids across edges
       },
       rules: {
         debug: { active: true },
-        separation: { coefficient: 0.002, radius: 40, active: true },
+        separation: { coefficient: 0.2, radius: 40, active: true },
         alignment: { coefficient: 0.02, radius: 60, active: true },
-        cohesion: { coefficient: 0.02, radius: 80, active: true },
+        cohesion: { coefficient: 0.05, radius: 80, active: true },
       }
     })
     const simulation = {
@@ -30,7 +30,6 @@ Wrap boids across edges
       engine: new Engine(settings.rule),
       settings,
     }
-
 
     p.setup = function() {
       // setup canvas

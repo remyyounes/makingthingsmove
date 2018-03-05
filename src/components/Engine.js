@@ -15,12 +15,30 @@ const getNeighbours = (flock, radius) => focal =>
     return focal !== boid && distance < radius && distance > 0
   })
 
+const steer = target => focal => {
+  const delta = getDelta({ position: target })(focal)
+  const distance = delta.mag()
+  const threshHold = focal.rules.cohesion.radius / 2
+  delta.normalize(1)
+  distance < threshHold
+    ? delta.mult(focal.maxVelocity * (distance / threshHold))
+    : delta.mult(focal.maxVelocity)
+  return delta.sub(focal.velocity).limit(focal.maxForce)
+}
+
 const forces = {
   debug: group => focal => new p5.Vector(0, 0),
-  separation: group => focal => average(group.map(getDelta(focal))),
-  alignment: group => focal => average(group.map(getVelocity)),
-  cohesion: group => focal =>
-    getDelta({ position: average(group.map(getPosition)) })(focal).normalize(1),
+  separation: group => focal =>
+    average(
+      group.map(boid => {
+        const delta = getDelta(focal)(boid)
+        const distance = delta.mag()
+        return delta.normalize().div(distance)
+      })
+    ),
+  alignment: group => focal =>
+    average(group.map(getVelocity)).limit(focal.maxForce),
+  cohesion: group => focal => steer(average(group.map(getPosition)))(focal),
 }
 
 const computeForce = (key, group) => boid =>
@@ -30,15 +48,16 @@ const updateRule = (flock, boid) => rule => {
   const force = new p5.Vector(0, 0)
   if (boid.rules[rule].active) {
     const group = getNeighbours(flock, boid.rules[rule].radius)(boid)
-    return force.add(computeForce(rule, group)(boid))
+    force.add(computeForce(rule, group)(boid))
   }
   return force
 }
 
-const updateBoid = flock => boid => {
-  const all = Object.keys(forces).map(updateRule(flock, boid))
+const updateBoid = flock => focal => {
+  const all = Object.keys(forces).map(updateRule(flock, focal))
   const sum = all.reduce((acc, next) => acc.add(next), new p5.Vector(0, 0))
-  return boid.applyForce(sum)
+  focal.applyForce(sum.mult(focal.maxVelocity))
+  focal.velocity.normalize(focal.maxVelocity)
 }
 
 class Engine {

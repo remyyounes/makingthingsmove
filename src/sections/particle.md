@@ -64,7 +64,6 @@ class MovingParticle extends React.Component {
 
     if (yMin <= 0 || yMax >= bounds.height) {
       particle.velocity.y *= -.9
-      debugger;
       particle.position.y = (yMin < 0) ? radius : bounds.height - radius
     }
   }
