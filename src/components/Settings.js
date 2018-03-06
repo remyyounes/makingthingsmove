@@ -20,7 +20,6 @@ const readSetting = ({ radius, coefficient, active }) => ({
 class Settings {
   constructor(props) {
     this.rules = props.rules
-    this.count = props.count
     this.world = props.world
     this.p = props.p
     this.position = new p5.Vector(20, 0)
@@ -31,32 +30,35 @@ class Settings {
     return this.position.add(0, 20).copy()
   }
 
-  update() {
-    this.rules.separation = readSetting(this.sliders.separation)
-    this.rules.alignment = readSetting(this.sliders.alignment)
-    this.rules.cohesion = readSetting(this.sliders.cohesion)
-    this.rules.debug.active = this.sliders.debug.checked()
+  update(simulation) {
+    this.rules.separation = readSetting(this.controls.separation)
+    this.rules.alignment = readSetting(this.controls.alignment)
+    this.rules.cohesion = readSetting(this.controls.cohesion)
+    this.rules.debug.active = this.controls.debug.checked()
+    this.controls.count.html(`count: ${simulation.world.entities.length}`)
   }
 
   initSliders() {
-    this.sliders = {
+    this.controls = {
       separation: createRuleSlider(this.p, 'separation', this.rules.separation),
       alignment: createRuleSlider(this.p, 'alignment', this.rules.alignment),
       cohesion: createRuleSlider(this.p, 'cohesion', this.rules.cohesion),
       debug: this.p.createCheckbox('debug', this.rules.debug.active),
+      count: this.p.createDiv(`count: ${this.world.entities.length}`),
     }
 
     this.render([
-      this.sliders.separation.active,
-      this.sliders.separation.radius,
-      this.sliders.separation.coefficient,
-      this.sliders.alignment.active,
-      this.sliders.alignment.radius,
-      this.sliders.alignment.coefficient,
-      this.sliders.cohesion.active,
-      this.sliders.cohesion.radius,
-      this.sliders.cohesion.coefficient,
-      this.sliders.debug,
+      this.controls.count,
+      this.controls.separation.active,
+      this.controls.separation.radius,
+      this.controls.separation.coefficient,
+      this.controls.alignment.active,
+      this.controls.alignment.radius,
+      this.controls.alignment.coefficient,
+      this.controls.cohesion.active,
+      this.controls.cohesion.radius,
+      this.controls.cohesion.coefficient,
+      this.controls.debug,
     ])
   }
 

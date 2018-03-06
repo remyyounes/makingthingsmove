@@ -7,13 +7,16 @@ const wrap = dimensions => particle => {
   particle.position.y %= dimensions.y
 }
 
+const isAlive = entity => entity.getHealth() > 0
+
 class World {
   constructor(props) {
-    this.entities = []
+    this.entities = props.entities || []
     this.dimensions = props.dimensions
   }
 
   update() {
+    this.entities = this.entities.filter(isAlive)
     this.entities.forEach(wrap(this.dimensions))
   }
 }

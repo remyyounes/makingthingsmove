@@ -12,15 +12,14 @@ Wrap boids across edges
     const center = dimensions.copy().div(2)
     const settings = new Settings({
       p,
-      count: 25,
       world: {
         dimensions,
         center,
-        entities: [],
+        entities: R.times(R.identity, 25),
       },
       rules: {
         debug: { active: true },
-        separation: { coefficient: 0.2, radius: 40, active: true },
+        separation: { coefficient: 0.3, radius: 40, active: true },
         alignment: { coefficient: 0.02, radius: 60, active: true },
         cohesion: { coefficient: 0.05, radius: 80, active: true },
       }
@@ -43,7 +42,7 @@ Wrap boids across edges
         position: simulation.settings.world.center.copy(),
         rules: simulation.settings.rules,
       })
-      simulation.world.entities = R.times( initBoid, simulation.settings.count )
+      simulation.world.entities = R.times( initBoid, simulation.world.entities.length )
     }
 
 
@@ -64,7 +63,7 @@ Wrap boids across edges
       const { engine, world, settings } = simulation
       p.background(p.color('white'))
       // get latest input settings
-      settings.update()
+      settings.update(simulation)
       // update engine according to settings
       engine.update(world.entities)
       world.update()

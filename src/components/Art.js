@@ -17,8 +17,10 @@ const rect = (ctx, particle) => {
 
 const boid = ctx => boid => {
   ctx.push()
+  ctx.canvas.getContext('2d').globalAlpha = boid.life / 100
   ctx.translate(boid.position.x, boid.position.y)
   ctx.rotate(boid.velocity.heading() + Math.PI / 2)
+  ctx.scale(boid.getHealth() + 1)
   ctx.triangle(
     0,
     -boid.size.height / 2,
